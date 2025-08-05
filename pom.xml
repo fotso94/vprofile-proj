@@ -24,6 +24,7 @@
         <logback.version>1.5.6</logback.version>
         <maven.compiler.source>17</maven.compiler.source>
         <maven.compiler.target>17</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
 
@@ -248,6 +249,21 @@
             <artifactId>jakarta.servlet.jsp.jstl</artifactId>
             <version>2.0.0</version>
         </dependency>
+
+         <!-- Selenium WebDriver -->
+         <dependency>
+             <groupId>org.seleniumhq.selenium</groupId>
+             <artifactId>selenium-java</artifactId>
+             <version>4.12.1</version>
+         </dependency>
+         
+         <!-- TestNG -->
+         <dependency>
+             <groupId>org.testng</groupId>
+             <artifactId>testng</artifactId>
+             <version>7.10.1</version>
+             <scope>test</scope>
+         </dependency>
 
     </dependencies>
 

@@ -315,17 +315,23 @@
                     <artifactId>maven-surefire-plugin</artifactId>
                     <version>3.2.5</version>
                     <configuration>
+                      <!-- Path to your TestNG suite file -->
                       <suiteXmlFiles>
                         <suiteXmlFile>testng.xml</suiteXmlFile>
                       </suiteXmlFiles>
+                  
+                      <!-- Avoid scanning for JUnit tests -->
+                      <properties>
+                        <property>
+                          <name>listener</name>
+                          <value>org.testng.reporters.XMLReporter</value>
+                        </property>
+                      </properties>
                       <testNGArtifactName>org.testng:testng</testNGArtifactName>
                       <useSystemClassLoader>true</useSystemClassLoader>
-                      <!-- Force only TestNG provider -->
-                      <providers>
-                        <provider>
-                          <name>testng</name>
-                        </provider>
-                      </providers>
+                      <dependenciesToScan>
+                        <dependency>org.testng</dependency>
+                      </dependenciesToScan>
                     </configuration>
          </plugin>
         </plugins>

@@ -3,7 +3,6 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
   <modelVersion>4.0.0</modelVersion>
-
   <groupId>com.visualpathit</groupId>
   <artifactId>vprofile</artifactId>
   <packaging>war</packaging>
@@ -21,11 +20,13 @@
     <mysql-connector.version>8.0.33</mysql-connector.version>
     <commons-dbcp.version>2.12.0</commons-dbcp.version>
 
-    <!-- keep for other tools, but we are not using JUnit at all -->
-    <logback.version>1.5.6</logback.version>
+    <!-- compile settings -->
     <maven.compiler.source>17</maven.compiler.source>
     <maven.compiler.target>17</maven.compiler.target>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+    <!-- logs -->
+    <logback.version>1.5.6</logback.version>
   </properties>
 
   <dependencies>
@@ -51,7 +52,6 @@
       <artifactId>spring-security-config</artifactId>
       <version>${spring-security.version}</version>
     </dependency>
-
     <dependency>
       <groupId>org.springframework.data</groupId>
       <artifactId>spring-data-jpa</artifactId>
@@ -68,7 +68,6 @@
       <artifactId>hibernate-core</artifactId>
       <version>${hibernate.version}</version>
     </dependency>
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-orm</artifactId>
@@ -85,7 +84,7 @@
       <version>${spring.version}</version>
     </dependency>
 
-    <!-- Elasticsearch (as in your current setup) -->
+    <!-- Extra libs -->
     <dependency>
       <groupId>org.elasticsearch.client</groupId>
       <artifactId>elasticsearch-rest-high-level-client</artifactId>
@@ -96,8 +95,6 @@
       <artifactId>elasticsearch</artifactId>
       <version>7.10.2</version>
     </dependency>
-
-    <!-- RabbitMQ / Memcached -->
     <dependency>
       <groupId>org.springframework.amqp</groupId>
       <artifactId>spring-rabbit</artifactId>
@@ -114,7 +111,7 @@
       <version>2.12.3</version>
     </dependency>
 
-    <!-- MySQL Connector -->
+    <!-- MySQL Connector (old coordinates kept for your project) -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
@@ -140,74 +137,12 @@
       <scope>provided</scope>
     </dependency>
 
-    <!-- ===== Test scope (TestNG only) ===== -->
-    <!-- Exclude all JUnit / JUnit Platform pulled by Spring Boot -->
-    <dependency>
-      <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-test</artifactId>
-      <version>${spring-boot.version}</version>
-      <scope>test</scope>
-      <exclusions>
-        <exclusion>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter-api</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.junit.jupiter</groupId>
-          <artifactId>junit-jupiter-engine</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.junit.vintage</groupId>
-          <artifactId>junit-vintage-engine</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.junit.platform</groupId>
-          <artifactId>junit-platform-launcher</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>junit</groupId>
-          <artifactId>junit</artifactId>
-        </exclusion>
-        <exclusion>
-          <groupId>org.mockito</groupId>
-          <artifactId>mockito-junit-jupiter</artifactId>
-        </exclusion>
-      </exclusions>
-    </dependency>
-
-    <dependency>
-      <groupId>org.mockito</groupId>
-      <artifactId>mockito-core</artifactId>
-      <version>5.5.0</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- Spring test utilities (works fine with TestNG when you use TestNG annotations) -->
-    <dependency>
-      <groupId>org.springframework</groupId>
-      <artifactId>spring-test</artifactId>
-      <version>${spring.version}</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- Logging helpers -->
+    <!-- Logging -->
     <dependency>
       <groupId>ch.qos.logback</groupId>
       <artifactId>logback-classic</artifactId>
       <version>${logback.version}</version>
     </dependency>
-    <dependency>
-      <groupId>org.hamcrest</groupId>
-      <artifactId>hamcrest-all</artifactId>
-      <version>1.3</version>
-      <scope>test</scope>
-    </dependency>
-
-    <!-- Log4j (as in your current setup) -->
     <dependency>
       <groupId>org.apache.logging.log4j</groupId>
       <artifactId>log4j-api</artifactId>
@@ -240,7 +175,6 @@
       <artifactId>commons-dbcp2</artifactId>
       <version>2.12.0</version>
     </dependency>
-
     <dependency>
       <groupId>org.elasticsearch.plugin</groupId>
       <artifactId>aggs-matrix-stats-client</artifactId>
@@ -251,13 +185,11 @@
       <artifactId>jackson-databind</artifactId>
       <version>2.13.0</version>
     </dependency>
-
     <dependency>
       <groupId>org.springframework</groupId>
       <artifactId>spring-messaging</artifactId>
       <version>${spring.version}</version>
     </dependency>
-
     <dependency>
       <groupId>jakarta.servlet.jsp.jstl</groupId>
       <artifactId>jakarta.servlet.jsp.jstl-api</artifactId>
@@ -269,18 +201,34 @@
       <version>2.0.0</version>
     </dependency>
 
-    <!-- Selenium + TestNG -->
+    <!-- Selenium -->
     <dependency>
       <groupId>org.seleniumhq.selenium</groupId>
       <artifactId>selenium-java</artifactId>
       <version>4.12.1</version>
     </dependency>
+
+    <!-- === TEST SCOPE: TestNG only (no JUnit) === -->
     <dependency>
       <groupId>org.testng</groupId>
       <artifactId>testng</artifactId>
       <version>7.10.1</version>
       <scope>test</scope>
     </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>5.5.0</version>
+      <scope>test</scope>
+    </dependency>
+    <!-- Removed:
+         - org.springframework.boot:spring-boot-starter-test
+         - junit:junit
+         - org.junit.jupiter:junit-jupiter-api
+         - org.junit.jupiter:junit-jupiter-engine
+         - org.mockito:mockito-junit-jupiter
+         - org.springframework:spring-test
+    -->
   </dependencies>
 
   <build>
@@ -297,7 +245,7 @@
         </configuration>
       </plugin>
 
-      <!-- War -->
+      <!-- WAR -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-war-plugin</artifactId>
@@ -334,10 +282,21 @@
         <version>3.2.5</version>
         <configuration>
           <suiteXmlFiles>
-            <suiteXmlFile>testng.xml</suiteXmlFile>
+            <suiteXmlFile>${project.basedir}/testng.xml</suiteXmlFile>
           </suiteXmlFiles>
-          <!-- keep it minimal; forcing TestNG by removing JUnit from classpath -->
+          <testNGArtifactName>org.testng:testng</testNGArtifactName>
           <useSystemClassLoader>true</useSystemClassLoader>
+          <properties>
+            <property>
+              <name>listener</name>
+              <value>org.testng.reporters.XMLReporter</value>
+            </property>
+            <!-- Optional: increase TestNG logs -->
+            <!-- <property>
+              <name>surefire.testng.verbose</name>
+              <value>2</value>
+            </property> -->
+          </properties>
         </configuration>
       </plugin>
     </plugins>

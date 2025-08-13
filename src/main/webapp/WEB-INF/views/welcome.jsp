@@ -110,7 +110,7 @@
                             <p>Strong Male.</p>
                             <hr>
                             <h3><strong>Birthday</strong></h3>
-                            <p>January 06 1988.</p>
+                            <p>January 06 1988...</p>
                         </div>
                     </div>
                 </div>
